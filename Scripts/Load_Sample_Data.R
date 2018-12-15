@@ -41,38 +41,40 @@ library(quantmod)
 
 # Choose and Load Independent Variables -----------------------------------
 
-# These are all coming from FRED right now using quantmod
-FRED_symbols <- c("UNRATE", 
-  "NOCDFSA066MSFRBPHI",
-  "T10Y2Y",
-  "FEDFUNDS",
-  "PAYEMS",
-  "INDPRO",
-  "DSPIC96",
-  "AWHMAN",
-  "HOUST",
-  "PERMIT",
-  "DPCCRC1M027SBEA",
-  "BUSLOANS",
-  "BAA10YM")
-FRED_names <- c("u_rate", 
-                "philly_new_orders",
-                "slope_10_2",
-                "fed_funds",
-                "payrolls",
-                "industrial_prod",
-                "income",
-                "avg_wkly_hours",
-                "housing_Starts",
-                "housing_permits",
-                "core_pc_exp",
-                "businesS_loans",
-                "baa_spread")
+# To add a new variable, add it to the FRED_symbols AND FRED_names tables
 
+# These are all coming from FRED right now using quantmod
+FRED_symbols <- data.frame(FRED_code = c("UNRATE",
+                                         "NOCDFSA066MSFRBPHI",
+                                         "T10Y2Y",
+                                         "FEDFUNDS",
+                                         "PAYEMS",
+                                         "INDPRO",
+                                         "DSPIC96",
+                                         "AWHMAN",
+                                         "HOUST",
+                                         "PERMIT",
+                                         "DPCCRC1M027SBEA",
+                                         "BUSLOANS",
+                                         "BAA10YM"),
+                           FRED_name = c("u_rate", 
+                                         "philly_new_orders",
+                                         "slope_10_2",
+                                         "fed_funds",
+                                         "payrolls",
+                                         "industrial_prod",
+                                         "income",
+                                         "avg_wkly_hours",
+                                         "housing_starts",
+                                         "housing_permits",
+                                         "core_pc_exp",
+                                         "business_loans",
+                                         "baa_spread"))
+                           
 
 
 # Quantmod is all about creating the variabels in the environmnet
-getSymbols(FRED_symbols, src = "FRED", from = "1900-01-01")
+getSymbols(FRED_symbols[,1], src = "FRED", from = "1900-01-01")
 
 # US recession indicator as determined by the NBER, 1 or 0
 # Not using here, but could be useful
