@@ -69,8 +69,24 @@ FRED_symbols <- data.frame(FRED_code = c("UNRATE",
                                          "housing_permits",
                                          "core_pc_exp",
                                          "business_loans",
-                                         "baa_spread"))
-                           
+                                         "baa_spread"),
+                           Transformation = c("DLV",
+                                              "LV",
+                                              "LV",
+                                              "Factor",
+                                              "DLN",
+                                              "DLN",
+                                              "DLN",
+                                              "DLV",
+                                              "LN",
+                                              "LN",
+                                              "DLN",
+                                              "DLV",
+                                              "LV"),
+                           stringsAsFactors = FALSE)
+
+
+
 
 
 # Quantmod is all about creating the variabels in the environmnet
