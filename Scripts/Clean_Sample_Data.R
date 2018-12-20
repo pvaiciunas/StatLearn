@@ -1,23 +1,8 @@
-library(dplyr)
-source("Scripts/Functions.R")
+
+# Utilizes the 'rawdata' object from the 'Load_Sample_Data.R' Script
 
 
-# Combine all the data ----------------------------------------------------
-
-# First step is to combine all the data into a single dataframe and make it tidy
-# Initialize the dataframe with the first symbol
-tdata <- xts_to_df(get(FRED_symbols[1,1]))
-names(tdata) <- c("temp","date")
-
-# Create the rest
-for(i in FRED_symbols[,1]) {
-  tdata <- merge(tdata, xts_to_df(get(i)))
-}
-#### PROBLEM HERE. tdata should be the fully loaded datafrmae, but is returning with
-#### 0 rwos :(
-
-
-# Transform and Lag the Independent Variables -------------------------------------
+# Transform the Independent Variables -------------------------------------
 
 # HEre we are transforming numerical variabels to coincide with CFNAI convention
 # or something related if it's not used in their model. Categorical variables 
@@ -29,7 +14,14 @@ for(i in FRED_symbols[,1]) {
 #   DLV: Change in the level (m/m)
 #   DLN: Change in the log level
 #   Factor: This is the one-hot encoding. Three codings - rising, falling, level
-# 
+
+# Join the data with the original table to determine the transformation
+
+
+
+
+# Lag the Independant Variables -------------------------------------------
+
 # And then lagging
 # Some of the data is released with a lag (e.g. housing starts)
 # Some is concurrent (e.g. Baa spreads)
